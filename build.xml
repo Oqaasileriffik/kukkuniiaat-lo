@@ -1,0 +1,53 @@
+<project name="kukkuniiaat" default="all" basedir=".">
+	<property name="project.src"   location="src" />
+	<property name="project.build" location="bin" />
+
+	<target name="all" depends="init, dist" />
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${project.build}" />
+	</target>
+
+	<path id="classpath.libs">
+		<fileset dir="lib">
+			<include name="*.jar" />
+ 		</fileset>
+	</path>
+
+	<target name="dist" depends="ooo-build" description="Builds one ZIP for both OpenOffice.org and stand-alone use">
+		<zip compress="yes" destfile="Kukkuniiaat.oxt" basedir="." includes="kukkuniiaat.jar,lib/*,lib/foma/*,lib/foma/*/*,description.xml,resources/*.png,META-INF/manifest.xml,description.txt" />
+	</target>
+
+	<target name="ooo-build" depends="compile">
+		<jar jarfile="kukkuniiaat.jar" basedir="bin">
+			<manifest>
+				<attribute name="RegistrationClassName" value="kukkuniiaat.openoffice.CentralRegistrationClass" />
+				<attribute name="RegistrationClasses" value="kukkuniiaat.openoffice.Main" />
+				<attribute name="Implementation-Version" value="0.3.1" />
+				<attribute name="Class-Path" value=". ./lib/jdom.jar ./lib/juh.jar ./lib/jurt.jar ./lib/ridl.jar ./lib/unoil.jar ./lib/json.jar ./resource" />
+				<attribute name="Uno-Type-Path" value="" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="compile" depends="init" description="compile the source " >
+		<javac srcdir="${project.src}/"
+			destdir="${project.build}"
+			nowarn="yes"
+			depend="yes"
+			debug="true"
+			optimize="yes">
+			<classpath>
+				<path refid="classpath.libs" />
+			</classpath>
+            <compilerarg value="-Xlint"/>
+		</javac>
+	</target>
+
+	<target name="clean" description="clean up" >
+		<delete dir="${project.build}" />
+		<delete file="kukkuniiaat.jar" />
+		<delete file="Kukkuniiaat.oxt" />
+	</target>
+</project>
