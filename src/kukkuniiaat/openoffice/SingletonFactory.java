@@ -1,5 +1,6 @@
 package kukkuniiaat.openoffice;
 
+import com.sun.star.lang.XServiceInfo;
 import com.sun.star.lang.XSingleComponentFactory;
 import com.sun.star.uno.XComponentContext;
 
@@ -10,7 +11,7 @@ import com.sun.star.uno.XComponentContext;
  *
  * @author Marcin Miłkowski
  */
-public class SingletonFactory implements XSingleComponentFactory {
+public class SingletonFactory implements XServiceInfo, XSingleComponentFactory {
 
   private transient kukkuniiaat.openoffice.Main instance;
 
@@ -26,5 +27,22 @@ public class SingletonFactory implements XSingleComponentFactory {
       instance.changeContext(xContext);      
     }
     return instance;
-  }  
+  }
+
+  public final String getImplementationName() {
+    return Main.class.getName();
+  }
+
+  public final boolean supportsService(String serviceName) {
+    for (String s : getSupportedServiceNames()) {
+      if (s.equals(serviceName)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public final String[] getSupportedServiceNames() {
+    return Main.getServiceNames();
+  }
 }

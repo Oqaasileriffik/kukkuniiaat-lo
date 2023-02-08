@@ -7,16 +7,16 @@
 		<name lang="kl-GL">Kukkuniiaat Stavekontrol</name>
 	</display-name>
 
-	<version value="0.3.2" />
+	<version value="0.3.3" />
 
 	<icon>
 		<default xlink:href="resources/logo.png" />
 	</icon>
 
 	<publisher>
-    <name xlink:href="http://oqaaserpassualeriffik.org/" lang="en">Oqaaserpassualeriffik</name>
-    <name xlink:href="http://oqaaserpassualeriffik.org/" lang="da">Oqaaserpassualeriffik</name>
-    <name xlink:href="http://oqaaserpassualeriffik.org/" lang="kl">Oqaaserpassualeriffik</name>
+		<name xlink:href="http://oqaasileriffik.gl/" lang="en">Oqaasileriffik</name>
+		<name xlink:href="http://oqaasileriffik.gl/" lang="da">Oqaasileriffik</name>
+		<name xlink:href="http://oqaasileriffik.gl/" lang="kl">Oqaasileriffik</name>
 	</publisher>	
 
 	<dependencies>
@@ -30,6 +30,6 @@
 	</release-notes>
 
 	<update-information>
-		<src xlink:href="http://oqaaserpassualeriffik.org/d/update.xml" />
+		<src xlink:href="http://oqaasileriffik.gl/d/update.xml" />
 	</update-information>
 </description>
